@@ -1,5 +1,5 @@
 import glob
 import os
 
-for f in glob.glob("./nucc/out/data*.txt"):
-    os.system("cat "+f+" >> negative.txt")
+for f in glob.glob("./*.lst"):
+    os.system("cat "+f+" >> label_negaposi.lst")

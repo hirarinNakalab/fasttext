@@ -1,9 +1,9 @@
 import codecs
 import re
 
-for i in range(129):
-    f_in  = codecs.open('./nucc/data{:03d}.txt'.format(i+1), 'r', 'utf-8')
-    f_out = codecs.open('./nucc/out/data{:03d}.txt'.format(i+1), 'w', 'utf-8')
+for i in range(90):
+    f_in  = codecs.open('./negative/data{:03d}.txt'.format(i+1), 'r', 'utf-8')
+    f_out = codecs.open('./negative/out/data{:03d}.txt'.format(i+1), 'w', 'utf-8')
 
     lines = f_in.readlines() #読み込み
     lines2 = []
