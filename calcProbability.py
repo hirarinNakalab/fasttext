@@ -5,10 +5,10 @@ import sys
 import fasttext as ft
 import subprocess as cmd
 
-INPUT_VALI_DIR = './multiclass/valid/'
+INPUT_VALI_DIR = './threeclass/valid/'
 ENC_CONFIG = 'utf-8'
 
-classifier = ft.load_model('multi.bin')
+classifier = ft.load_model('fixedthreeclassification.bin')
 
 def get_all_files(in_dir):
     for root, dirs, files in os.walk(in_dir):
@@ -45,6 +45,7 @@ def split_into_words(doc, name=''):
     valid_doc = trim_doc(doc)
     
     daily_prob = 0
+#     houhan_prob = 0
     low_prob = 0
     mid_prob = 0
     high_prob = 0
@@ -56,13 +57,14 @@ def split_into_words(doc, name=''):
         estimate = classifier.predict([words], k=4)
         estimate_2 = classifier.predict_proba([words], k=4)
         if estimate[0][0] == "__label__1,":
-            daily_prob += estimate_2[0][0][1]
-        elif estimate[0][0] == "__label__2,":
             low_prob += estimate_2[0][0][1]
-        elif estimate[0][0] == "__label__3,":
+        elif estimate[0][0] == "__label__2,":
             mid_prob += estimate_2[0][0][1]
-        elif estimate[0][0] == "__label__4,":
-            high_prob += estimate_2[0][0][1]   
+        elif estimate[0][0] == "__label__3,":
+            high_prob += estimate_2[0][0][1]
+        elif estimate[0][0] == "__label__0,":
+            daily_prob += estimate_2[0][0][1]   
+#     return (name, daily_prob, low_prob, mid_prob, high_prob)
     return (name, daily_prob, low_prob, mid_prob, high_prob)
 
 

@@ -1,5 +1,5 @@
 import glob
 import os
 
-for f in glob.glob("./multiclass/train/*.lst"):
-    os.system("cat "+f+" >> ./multiclass/train/label_multi.lst")
+for f in glob.glob("./threeclass/train/fixed*.lst"):
+    os.system("cat "+f+" >> ./threeclass/train/fixedlabel_threeclass.lst")
